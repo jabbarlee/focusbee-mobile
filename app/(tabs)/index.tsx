@@ -256,7 +256,7 @@ export default function HomeScreen() {
           onPress={() => router.push("/ritual/setup")}
         >
           <Text className="text-lg font-bold text-primary-foreground">
-            Start Ritual
+            Start Focusing 
           </Text>
         </Pressable>
       </View>
