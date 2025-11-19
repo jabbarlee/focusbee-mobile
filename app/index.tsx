@@ -1,7 +1,7 @@
 import "@/styles/global.css";
 import { Pressable, ScrollView, Text, View } from "react-native";
 
-export default function App() {
+export default function Tab() {
   return (
     <ScrollView className="flex-1 bg-black">
       <View className="flex-1 px-4 py-8">
