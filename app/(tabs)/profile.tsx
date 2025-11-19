@@ -1,6 +1,22 @@
 import "@/styles/global.css";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  User,
+  Mail,
+  Bell,
+  Lock,
+  Palette,
+  Timer,
+  Vibrate,
+  MapPin,
+  Smartphone,
+  HelpCircle,
+  MessageSquare,
+  FileText,
+  Check,
+  ChevronRight,
+} from "lucide-react-native";
 
 export default function ProfileScreen() {
   const insets = useSafeAreaInsets();
@@ -42,7 +58,7 @@ export default function ProfileScreen() {
           >
             <View className="flex-row items-center gap-4 mb-4">
               <View className="w-20 h-20 rounded-full bg-primary/20 items-center justify-center">
-                <Text className="text-4xl">👤</Text>
+                <User size={32} color="#bb4d00" />
               </View>
               <View className="flex-1">
                 <Text className="text-xl font-bold text-foreground mb-1">
@@ -81,37 +97,37 @@ export default function ProfileScreen() {
               >
                 <View className="flex-row items-center gap-3">
                   <View className="w-10 h-10 rounded-lg bg-chart-1/10 items-center justify-center">
-                    <Text className="text-lg">📧</Text>
+                    <Mail size={20} color="#df6515" />
                   </View>
                   <Text className="text-base font-semibold text-foreground">
                     Email & Password
                   </Text>
                 </View>
-                <Text className="text-lg text-muted-foreground">›</Text>
+                <ChevronRight size={20} color="#8e8e8e" />
               </Pressable>
               <Pressable
                 className="p-4 border-b border-border flex-row items-center justify-between"
               >
                 <View className="flex-row items-center gap-3">
                   <View className="w-10 h-10 rounded-lg bg-chart-2/10 items-center justify-center">
-                    <Text className="text-lg">🔔</Text>
+                    <Bell size={20} color="#2775e8" />
                   </View>
                   <Text className="text-base font-semibold text-foreground">
                     Notifications
                   </Text>
                 </View>
-                <Text className="text-lg text-muted-foreground">›</Text>
+                <ChevronRight size={20} color="#8e8e8e" />
               </Pressable>
               <Pressable className="p-4 flex-row items-center justify-between">
                 <View className="flex-row items-center gap-3">
                   <View className="w-10 h-10 rounded-lg bg-chart-3/10 items-center justify-center">
-                    <Text className="text-lg">🔒</Text>
+                    <Lock size={20} color="#3d3fa8" />
                   </View>
                   <Text className="text-base font-semibold text-foreground">
                     Privacy & Security
                   </Text>
                 </View>
-                <Text className="text-lg text-muted-foreground">›</Text>
+                <ChevronRight size={20} color="#8e8e8e" />
               </Pressable>
             </View>
           </View>
@@ -137,7 +153,7 @@ export default function ProfileScreen() {
               >
                 <View className="flex-row items-center gap-3">
                   <View className="w-10 h-10 rounded-lg bg-chart-4/10 items-center justify-center">
-                    <Text className="text-lg">🎨</Text>
+                    <Palette size={20} color="#edb822" />
                   </View>
                   <View className="flex-1">
                     <Text className="text-base font-semibold text-foreground">
@@ -148,14 +164,14 @@ export default function ProfileScreen() {
                     </Text>
                   </View>
                 </View>
-                <Text className="text-lg text-muted-foreground">›</Text>
+                <ChevronRight size={20} color="#8e8e8e" />
               </Pressable>
               <Pressable
                 className="p-4 border-b border-border flex-row items-center justify-between"
               >
                 <View className="flex-row items-center gap-3">
                   <View className="w-10 h-10 rounded-lg bg-chart-1/10 items-center justify-center">
-                    <Text className="text-lg">⏱️</Text>
+                    <Timer size={20} color="#df6515" />
                   </View>
                   <View className="flex-1">
                     <Text className="text-base font-semibold text-foreground">
@@ -164,12 +180,12 @@ export default function ProfileScreen() {
                     <Text className="text-xs text-muted-foreground">25 minutes</Text>
                   </View>
                 </View>
-                <Text className="text-lg text-muted-foreground">›</Text>
+                <ChevronRight size={20} color="#8e8e8e" />
               </Pressable>
               <Pressable className="p-4 flex-row items-center justify-between">
                 <View className="flex-row items-center gap-3">
                   <View className="w-10 h-10 rounded-lg bg-chart-2/10 items-center justify-center">
-                    <Text className="text-lg">📳</Text>
+                    <Vibrate size={20} color="#2775e8" />
                   </View>
                   <View className="flex-1">
                     <Text className="text-base font-semibold text-foreground">
@@ -178,7 +194,7 @@ export default function ProfileScreen() {
                     <Text className="text-xs text-muted-foreground">Enabled</Text>
                   </View>
                 </View>
-                <Text className="text-lg text-muted-foreground">›</Text>
+                <ChevronRight size={20} color="#8e8e8e" />
               </Pressable>
             </View>
           </View>
@@ -202,7 +218,7 @@ export default function ProfileScreen() {
               <View className="mb-4">
                 <View className="flex-row items-center justify-between mb-2">
                   <View className="flex-row items-center gap-3">
-                    <Text className="text-xl">📍</Text>
+                    <MapPin size={20} color="#2775e8" />
                     <Text className="text-base font-semibold text-foreground">
                       Location
                     </Text>
@@ -218,7 +234,7 @@ export default function ProfileScreen() {
               <View className="mb-4">
                 <View className="flex-row items-center justify-between mb-2">
                   <View className="flex-row items-center gap-3">
-                    <Text className="text-xl">🔔</Text>
+                    <Bell size={20} color="#2775e8" />
                     <Text className="text-base font-semibold text-foreground">
                       Notifications
                     </Text>
@@ -234,7 +250,7 @@ export default function ProfileScreen() {
               <View>
                 <View className="flex-row items-center justify-between mb-2">
                   <View className="flex-row items-center gap-3">
-                    <Text className="text-xl">📱</Text>
+                    <Smartphone size={20} color="#2775e8" />
                     <Text className="text-base font-semibold text-foreground">
                       Motion & Fitness
                     </Text>
@@ -287,19 +303,19 @@ export default function ProfileScreen() {
                 </Text>
                 <View className="gap-2">
                   <View className="flex-row items-center gap-2">
-                    <Text className="text-success">✓</Text>
+                    <Check size={14} color="#00b86b" />
                     <Text className="text-xs text-foreground">
                       Unlimited sessions
                     </Text>
                   </View>
                   <View className="flex-row items-center gap-2">
-                    <Text className="text-success">✓</Text>
+                    <Check size={14} color="#00b86b" />
                     <Text className="text-xs text-foreground">
                       Advanced analytics
                     </Text>
                   </View>
                   <View className="flex-row items-center gap-2">
-                    <Text className="text-success">✓</Text>
+                    <Check size={14} color="#00b86b" />
                     <Text className="text-xs text-foreground">
                       Custom themes
                     </Text>
@@ -330,37 +346,37 @@ export default function ProfileScreen() {
               >
                 <View className="flex-row items-center gap-3">
                   <View className="w-10 h-10 rounded-lg bg-chart-2/10 items-center justify-center">
-                    <Text className="text-lg">❓</Text>
+                    <HelpCircle size={20} color="#2775e8" />
                   </View>
                   <Text className="text-base font-semibold text-foreground">
                     Help Center
                   </Text>
                 </View>
-                <Text className="text-lg text-muted-foreground">›</Text>
+                <ChevronRight size={20} color="#8e8e8e" />
               </Pressable>
               <Pressable
                 className="p-4 border-b border-border flex-row items-center justify-between"
               >
                 <View className="flex-row items-center gap-3">
                   <View className="w-10 h-10 rounded-lg bg-chart-3/10 items-center justify-center">
-                    <Text className="text-lg">📝</Text>
+                    <MessageSquare size={20} color="#3d3fa8" />
                   </View>
                   <Text className="text-base font-semibold text-foreground">
                     Contact Support
                   </Text>
                 </View>
-                <Text className="text-lg text-muted-foreground">›</Text>
+                <ChevronRight size={20} color="#8e8e8e" />
               </Pressable>
               <Pressable className="p-4 flex-row items-center justify-between">
                 <View className="flex-row items-center gap-3">
                   <View className="w-10 h-10 rounded-lg bg-chart-1/10 items-center justify-center">
-                    <Text className="text-lg">📄</Text>
+                    <FileText size={20} color="#df6515" />
                   </View>
                   <Text className="text-base font-semibold text-foreground">
                     Terms & Privacy
                   </Text>
                 </View>
-                <Text className="text-lg text-muted-foreground">›</Text>
+                <ChevronRight size={20} color="#8e8e8e" />
               </Pressable>
             </View>
           </View>

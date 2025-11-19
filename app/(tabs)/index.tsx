@@ -2,6 +2,7 @@ import "@/styles/global.css";
 import { router } from "expo-router";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Flame, Check, Sun, Briefcase, Book } from "lucide-react-native";
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
@@ -78,7 +79,7 @@ export default function HomeScreen() {
                   </Text>
                 </View>
                 <View className="flex-row items-center gap-1">
-                  <Text className="text-lg">🔥</Text>
+                  <Flame size={16} color="#bb4d00" />
                   <Text className="text-xs font-medium text-muted-foreground">
                     Keep going!
                   </Text>
@@ -111,7 +112,7 @@ export default function HomeScreen() {
                   </Text>
                 </View>
                 <View className="w-16 h-16 rounded-full bg-chart-2/20 items-center justify-center">
-                  <Text className="text-2xl">✓</Text>
+                  <Check size={24} color="#2775e8" strokeWidth={3} />
                 </View>
               </View>
             </View>
@@ -191,7 +192,7 @@ export default function HomeScreen() {
                   className="w-12 h-12 rounded-xl items-center justify-center"
                   style={{ backgroundColor: "#fffbf0" }}
                 >
-                  <Text className="text-xl">☀️</Text>
+                  <Sun size={20} color="#bb4d00" />
                 </View>
                 <View className="flex-1">
                   <Text className="text-base font-semibold text-foreground mb-0.5">
@@ -226,7 +227,7 @@ export default function HomeScreen() {
                   className="w-12 h-12 rounded-xl items-center justify-center"
                   style={{ backgroundColor: "#f0f9ff" }}
                 >
-                  <Text className="text-xl">💼</Text>
+                  <Briefcase size={20} color="#2775e8" />
                 </View>
                 <View className="flex-1">
                   <Text className="text-base font-semibold text-foreground mb-0.5">
@@ -261,7 +262,7 @@ export default function HomeScreen() {
                   className="w-12 h-12 rounded-xl items-center justify-center"
                   style={{ backgroundColor: "#f5f3ff" }}
                 >
-                  <Text className="text-xl">📚</Text>
+                  <Book size={20} color="#3d3fa8" />
                 </View>
                 <View className="flex-1">
                   <Text className="text-base font-semibold text-foreground mb-0.5">

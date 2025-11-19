@@ -1,6 +1,7 @@
 import "@/styles/global.css";
 import { ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Flame, Target, Star, Sparkles } from "lucide-react-native";
 
 export default function StatsScreen() {
   const insets = useSafeAreaInsets();
@@ -20,10 +21,10 @@ export default function StatsScreen() {
   const maxMinutes = Math.max(...weeklyData.map((d) => d.minutes));
 
   const achievements = [
-    { id: 1, title: "First Flight", icon: "🎯", unlocked: true },
-    { id: 2, title: "3-Day Streak", icon: "🔥", unlocked: true },
-    { id: 3, title: "Week Warrior", icon: "⭐", unlocked: false },
-    { id: 4, title: "Perfect Focus", icon: "✨", unlocked: true },
+    { id: 1, title: "First Flight", icon: Target, unlocked: true },
+    { id: 2, title: "3-Day Streak", icon: Flame, unlocked: true },
+    { id: 3, title: "Week Warrior", icon: Star, unlocked: false },
+    { id: 4, title: "Perfect Focus", icon: Sparkles, unlocked: true },
   ];
 
   return (
@@ -117,7 +118,7 @@ export default function StatsScreen() {
                   </Text>
                 </View>
                 <View className="flex-row items-center gap-1">
-                  <Text className="text-lg">🔥</Text>
+                  <Flame size={16} color="#bb4d00" />
                   <Text className="text-xs font-medium text-muted-foreground">
                     Best: 7 days
                   </Text>
@@ -231,8 +232,12 @@ export default function StatsScreen() {
                     opacity: achievement.unlocked ? 1 : 0.6,
                   }}
                 >
-                  <View className="items-center">
-                    <Text className="text-3xl mb-2">{achievement.icon}</Text>
+                  <View className="items-center mb-2">
+                    {achievement.unlocked ? (
+                      <achievement.icon size={32} color="#bb4d00" />
+                    ) : (
+                      <achievement.icon size={32} color="#8e8e8e" />
+                    )}
                     <Text
                       className={`text-sm font-semibold text-center ${
                         achievement.unlocked
