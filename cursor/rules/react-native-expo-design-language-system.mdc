@@ -1,0 +1,308 @@
+---
+alwaysApply: true
+---
+description: Design language system rules for FocusBee mobile app, including component libraries, icons, native integrations, colors, spacing, and layout guidelines.
+globs: src/**/*.{ts,tsx,js,jsx}, app/**/*.{ts,tsx,js,jsx}, components/**/*.{ts,tsx,js,jsx}
+---
+
+# Design Language System Rules
+
+## 1. Icon System - Lucide React Native
+
+- **Primary Icon Library**: Use `lucide-react-native` for all icons throughout the application
+- **Installation**: `npm install lucide-react-native`
+- **Usage Pattern**:
+  ```tsx
+  import { IconName } from 'lucide-react-native';
+  
+  <IconName size={24} color={theme.colors.foreground} />
+  ```
+- **Icon Sizing Standards**:
+  - Small: 16px (for inline text, badges)
+  - Medium: 24px (default, most common)
+  - Large: 32px (featured, prominent actions)
+  - Extra Large: 48px (hero sections, empty states)
+- **Icon Colors**: Always use theme-aware colors from the design system (foreground, primary, muted, etc.)
+- **Accessibility**: Always provide `accessibilityLabel` for icon-only buttons
+- **Consistency**: Use the same icon family throughout - avoid mixing icon libraries
+
+## 2. Component Library - Shadcn-like for React Native
+
+- **Recommended Library**: Use **Nativecn** (nativecn.dev) - a shadcn/ui-inspired component library for React Native
+- **Alternative Options**: 
+  - **Gluestack UI** (gluestack.io) - Modern, accessible, highly customizable
+  - **NativeBase** (nativebase.io) - Comprehensive component library
+- **Installation**: Follow Nativecn documentation for setup with NativeWind
+- **Component Philosophy**:
+  - Copy components into your project (not installed as dependencies)
+  - Fully customizable and themeable
+  - Built with NativeWind/Tailwind CSS
+  - Accessible by default
+  - TypeScript-first
+- **Component Structure**: Place shadcn-like components in `src/components/ui/` directory
+- **Component Naming**: Use PascalCase (e.g., `Button.tsx`, `Card.tsx`, `Input.tsx`)
+- **Component Pattern**: Follow the compound component pattern where appropriate
+- **Theme Integration**: All components must respect the app's color system and dark mode
+
+## 3. Native SwiftUI Components Integration
+
+- **Native Tabs with Liquid Glass Effect**: 
+  - Utilize SwiftUI's native TabView with the new liquid glass effect for iOS
+  - Create a native module bridge to expose SwiftUI components to React Native
+  - Use `expo-modules` or React Native's native module system
+  - Location: Create native modules in `ios/` directory
+- **Implementation Pattern**:
+  ```swift
+  // Example: NativeTabView.swift
+  import SwiftUI
+  import ExpoModulesCore
+  
+  public class NativeTabViewModule: Module {
+    // Bridge SwiftUI TabView to React Native
+  }
+  ```
+- **When to Use Native Components**:
+  - Performance-critical UI elements
+  - Platform-specific features (iOS-only or Android-only)
+  - Complex animations that benefit from native rendering
+  - System integrations (keyboard, haptics, etc.)
+- **Fallback Strategy**: Always provide React Native fallbacks for Android and web
+- **Documentation**: Document all native component bridges in `docs/native-components.md`
+
+## 4. Color System
+
+- **Color Format**: Use OKLCH color space for all color definitions (as defined in `global.css`)
+- **Color Variables**: All colors are defined as CSS variables in `global.css` and accessible via NativeWind
+- **Color Usage**:
+  - **Primary**: `bg-primary`, `text-primary-foreground` - Main brand color, CTAs, active states
+  - **Secondary**: `bg-secondary`, `text-secondary-foreground` - Secondary actions, subtle highlights
+  - **Accent**: `bg-accent`, `text-accent-foreground` - Emphasis, highlights, interactive elements
+  - **Destructive**: `bg-destructive`, `text-destructive-foreground` - Errors, warnings, delete actions
+  - **Success**: `bg-success`, `text-success-foreground` - Success states, confirmations
+  - **Muted**: `bg-muted`, `text-muted-foreground` - Subtle backgrounds, disabled states
+  - **Card**: `bg-card`, `text-card-foreground` - Card backgrounds and content
+  - **Border**: `border-border` - Borders, dividers, outlines
+  - **Input**: `bg-input`, `border-input` - Form inputs, text fields
+  - **Ring**: `ring-ring` - Focus rings, active states
+- **Dark Mode**: All colors automatically adapt via `.dark` class variant
+- **Color Accessibility**: Ensure WCAG AA contrast ratios (4.5:1 for text, 3:1 for UI)
+- **Gradient Usage**: Use predefined gradients (`bg-honey-gradient`, `bg-bee-gradient`, `bg-bee-soft`) sparingly for hero sections and special features
+
+## 5. Spacing & Layout System
+
+- **Spacing Scale**: Use Tailwind's spacing scale (4px base unit)
+  - `0` = 0px
+  - `1` = 4px
+  - `2` = 8px
+  - `3` = 12px
+  - `4` = 16px (base unit, most common)
+  - `5` = 20px
+  - `6` = 24px
+  - `8` = 32px
+  - `10` = 40px
+  - `12` = 48px
+  - `16` = 64px
+  - `20` = 80px
+- **Padding Standards**:
+  - **Container Padding**: `p-4` (16px) for screen containers
+  - **Card Padding**: `p-4` or `p-6` (16px or 24px)
+  - **Button Padding**: `px-4 py-2` (horizontal 16px, vertical 8px)
+  - **Input Padding**: `px-4 py-3` (horizontal 16px, vertical 12px)
+  - **List Item Padding**: `px-4 py-3` (horizontal 16px, vertical 12px)
+- **Gap Standards**:
+  - **Stack Gaps**: Use `gap-2` (8px) for small gaps, `gap-4` (16px) for medium, `gap-6` (24px) for large
+  - **Grid Gaps**: `gap-4` (16px) for most grids
+  - **Section Gaps**: `gap-6` or `gap-8` (24px or 32px) between major sections
+- **Margin Standards**:
+  - **Section Margins**: `mb-6` or `mb-8` (24px or 32px) between sections
+  - **Component Margins**: `mb-4` (16px) between related components
+  - **Screen Margins**: Use `mx-4` (16px horizontal) for screen edge margins
+- **Layout Patterns**:
+  - **Screen Container**: `flex-1 px-4 py-6` (full height, horizontal padding 16px, vertical 24px)
+  - **Card Container**: `bg-card rounded-lg p-4` (card background, rounded corners, padding)
+  - **Flex Layouts**: Use `flex-row` for horizontal, `flex-col` for vertical (default)
+  - **Safe Area**: Always use `SafeAreaView` or `useSafeAreaInsets()` for proper spacing on notched devices
+
+## 6. Border Radius System
+
+- **Radius Tokens**: Use predefined radius tokens from `global.css`
+  - `rounded-sm` = `var(--radius-sm)` = 2.5px (subtle rounding)
+  - `rounded-md` = `var(--radius-md)` = 4.5px (default, most common)
+  - `rounded-lg` = `var(--radius-lg)` = 10px (cards, modals)
+  - `rounded-xl` = `var(--radius-xl)` = 14px (large cards, hero sections)
+  - `rounded-full` = 9999px (pills, avatars, circular buttons)
+- **Usage Guidelines**:
+  - **Buttons**: `rounded-md` or `rounded-lg`
+  - **Cards**: `rounded-lg`
+  - **Inputs**: `rounded-md`
+  - **Badges/Pills**: `rounded-full`
+  - **Modals/Sheets**: `rounded-xl` (top corners only for bottom sheets)
+
+## 7. Typography System
+
+- **Font Families**: 
+  - **Sans**: Use system default or `--font-geist-sans` if available
+  - **Mono**: Use `--font-geist-mono` for code, technical content
+- **Font Sizes**: Use Tailwind's text size classes
+  - `text-xs` = 12px (captions, labels)
+  - `text-sm` = 14px (secondary text, helper text)
+  - `text-base` = 16px (body text, default)
+  - `text-lg` = 18px (subheadings)
+  - `text-xl` = 20px (headings)
+  - `text-2xl` = 24px (section headings)
+  - `text-3xl` = 30px (page titles)
+  - `text-4xl` = 36px (hero titles)
+- **Font Weights**:
+  - `font-normal` = 400 (body text)
+  - `font-medium` = 500 (emphasis, labels)
+  - `font-semibold` = 600 (headings)
+  - `font-bold` = 700 (strong emphasis)
+- **Line Heights**: Use Tailwind's leading classes (`leading-tight`, `leading-normal`, `leading-relaxed`)
+- **Text Colors**: Always use semantic color classes (`text-foreground`, `text-muted-foreground`, `text-primary`, etc.)
+
+## 8. Animation & Transitions
+
+- **Custom Animations**: Use predefined animations from `global.css`:
+  - `animate-float` - Gentle floating motion (3s infinite)
+  - `animate-pulse-glow` - Pulsing glow effect (2s infinite)
+  - `animate-honeycomb-pulse` - Honeycomb pulse (8s infinite)
+  - `animate-honeycomb-honey-fill` - Honey fill animation (12s infinite)
+  - `animate-honeycomb-golden-pulse` - Golden pulse (10s infinite)
+  - `animate-honeycomb-amber-glow` - Amber glow (14s infinite)
+  - `animate-fade-in-scale` - Fade in with scale (0.5s)
+- **React Native Reanimated**: Use `react-native-reanimated` for complex animations
+- **Expo Haptics**: Use `expo-haptics` for tactile feedback on interactions
+- **Animation Principles**:
+  - Keep animations subtle and purposeful
+  - Use easing functions (`ease-in-out`, `ease-out`)
+  - Duration: 200-300ms for micro-interactions, 300-500ms for transitions
+  - Avoid excessive animations that distract from content
+
+## 9. Component Patterns
+
+- **Button Variants**:
+  - `default` - Primary action, filled background
+  - `secondary` - Secondary action, outlined or subtle background
+  - `ghost` - Tertiary action, no background
+  - `destructive` - Delete/danger actions
+  - `link` - Text-only button, inline links
+- **Card Variants**:
+  - `default` - Standard card with shadow
+  - `outlined` - Card with border only
+  - `elevated` - Card with stronger shadow
+- **Input States**:
+  - `default` - Normal state
+  - `focus` - Focused state with ring
+  - `error` - Error state with destructive color
+  - `disabled` - Disabled state with muted colors
+- **Loading States**: Always provide loading indicators for async operations
+- **Empty States**: Design consistent empty state components with icons and helpful messages
+
+## 10. Accessibility Standards
+
+- **Semantic HTML**: Use proper semantic elements and React Native components
+- **Accessibility Labels**: Always provide `accessibilityLabel` for icon-only buttons and images
+- **Touch Targets**: Minimum 44x44pt (iOS) / 48x48dp (Android) for all interactive elements
+- **Color Contrast**: Ensure WCAG AA compliance (4.5:1 for text, 3:1 for UI)
+- **Screen Reader Support**: Test with VoiceOver (iOS) and TalkBack (Android)
+- **Focus Management**: Proper focus order and visible focus indicators
+- **Dynamic Type**: Support system font scaling for accessibility
+
+## 11. Platform-Specific Guidelines
+
+- **iOS**:
+  - Use native navigation patterns (tabs at bottom)
+  - Follow Human Interface Guidelines
+  - Support Dynamic Type
+  - Use native haptics
+  - Respect safe areas (notches, home indicator)
+- **Android**:
+  - Follow Material Design principles
+  - Use Material You theming where possible
+  - Support system back button
+  - Use ripple effects for touch feedback
+  - Respect system bars and navigation gestures
+- **Web**:
+  - Ensure keyboard navigation works
+  - Support hover states
+  - Optimize for different screen sizes
+  - Use semantic HTML
+
+## 12. File Organization
+
+- **Component Structure**:
+  ```
+  src/components/
+    ui/              # Shadcn-like base components
+      button.tsx
+      card.tsx
+      input.tsx
+    features/        # Feature-specific components
+    layout/          # Layout components (headers, footers)
+  ```
+- **Style Files**: Prefer NativeWind classes over StyleSheet when possible
+- **Theme Files**: Keep theme configuration in `constants/theme.ts` or `theme/` directory
+- **Type Definitions**: Co-locate types with components or in `types/` directory
+
+## 13. Best Practices
+
+- **Consistency**: Use design tokens (colors, spacing, typography) consistently throughout
+- **Performance**: Optimize images, use `expo-image` for better performance
+- **Responsive Design**: Test on multiple screen sizes (iPhone SE to iPad Pro)
+- **Dark Mode**: Always test both light and dark modes
+- **Error Handling**: Provide user-friendly error states and messages
+- **Loading States**: Show appropriate loading indicators
+- **Empty States**: Design helpful empty states with clear CTAs
+- **Form Validation**: Provide real-time feedback and clear error messages
+- **Navigation**: Use Expo Router for type-safe navigation
+- **State Management**: Use appropriate state management (Context, Zustand, etc.) for app-wide state
+
+## 14. Code Examples
+
+### Button Component
+```tsx
+import { Button } from '@/components/ui/button';
+import { Activity } from 'lucide-react-native';
+
+<Button variant="default" size="lg">
+  <Activity size={20} color="white" />
+  <Text>Start Focus Session</Text>
+</Button>
+```
+
+### Card Component
+```tsx
+import { Card } from '@/components/ui/card';
+
+<Card className="p-4 gap-4">
+  <Text className="text-xl font-semibold">Card Title</Text>
+  <Text className="text-muted-foreground">Card content</Text>
+</Card>
+```
+
+### Themed Component
+```tsx
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import { View, Text } from 'react-native';
+
+export function ThemedCard() {
+  const colorScheme = useColorScheme();
+  
+  return (
+    <View className="bg-card rounded-lg p-4 border border-border">
+      <Text className="text-card-foreground">Content</Text>
+    </View>
+  );
+}
+```
+
+## 15. Design Token Reference
+
+All design tokens are defined in `global.css` and accessible via NativeWind classes:
+- Colors: `bg-{color}`, `text-{color}`, `border-{color}`
+- Spacing: `p-{size}`, `m-{size}`, `gap-{size}`
+- Radius: `rounded-{size}`
+- Typography: `text-{size}`, `font-{weight}`
+- Animations: `animate-{name}`
+
+Refer to `tailwind.config.js` for extended theme configuration.
