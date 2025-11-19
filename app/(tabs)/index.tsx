@@ -1,4 +1,5 @@
 import "@/styles/global.css";
+import { router } from "expo-router";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -252,6 +253,7 @@ export default function HomeScreen() {
             elevation: 8,
             minWidth: 200,
           }}
+          onPress={() => router.push("/ritual/setup")}
         >
           <Text className="text-lg font-bold text-primary-foreground">
             Start Ritual
